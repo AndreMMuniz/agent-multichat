@@ -1,0 +1,448 @@
+{
+  "parsed_at": "2026-02-06T16:16:57.758858",
+  "source_directory": "C:\\Users\\mandr\\OneDrive\\Documentos\\Projeto\\agent-multichat\\data",
+  "summary": {
+    "total_files": 5,
+    "total_chunks": 31,
+    "total_chars": 30133,
+    "by_type": {
+      "text": {
+        "files": 2,
+        "chunks": 2
+      },
+      "csv": {
+        "files": 1,
+        "chunks": 16
+      },
+      "pdf": {
+        "files": 2,
+        "chunks": 13
+      }
+    }
+  },
+  "documents": [
+    {
+      "filename": "benchmark_report.md",
+      "filepath": "C:\\Users\\mandr\\OneDrive\\Documentos\\Projeto\\agent-multichat\\data\\benchmark_report.md",
+      "extension": ".md",
+      "size_bytes": 18125,
+      "modified_at": "2026-02-06T15:56:14.563821",
+      "file_hash": "cfaba0574004790c01086069f35236ac",
+      "type": "text",
+      "chunks": [
+        {
+          "content": "# 📊 RAG Benchmark Report\n\n**Gerado em:** 2026-02-06 15:56\n\n**Configuração:**\n- Modelo: `deepseek-r1:8b`\n- Chunks (k): `5`\n- Total de perguntas: `16`\n\n---\n\n## 📈 Resumo Executivo\n\n## Relatório Executivo: Avaliação de Sistema RAG\n\n**Data:** 2024-06-14  \n**Objetivo:** Analisar o desempenho do sistema RAG baseado nos resultados da última avaliação e propor ações prioritárias.\n\n---\n\n### 1. **Resumo Geral**\nO sistema RAG apresentou um desempenho insatisfatório na última avaliação. Com um total de 16 perguntas analisadas, apenas 6 (37,5%) obtiveram pontuação acima de 7,5 (média esperada). O score médio foi de **4,57**, indicando respostas frágeis e frequentemente incorretas ou imprecisas. A maioria das falhas foi atribuída a problemas de recuperação de contexto ou falhas no uso adequado das informações recuperadas pelo modelo.\n\n---\n\n### 2. **Principais Problemas**\nOs principais problemas identificados foram:\n\n1. **Falha na Recuperação de Contexto (retrieval_miss)**: 5 ocorrências (31% das falhas).  \n   O sistema não recuperou informações relevantes para responder perguntas sobre tecnologias (n8n, Bubble.io, FastAPI), funções da empresa e diferenciais.\n\n2. **Causas Incertas (unknown)**: 6 ocorrências (37,5%).  \n   Falhas no sistema de avaliação ou na interpretação das respostas.\n\n3. **Respostas Incorretas ou Irrelevantes (wrong_context)**: 2 ocorrências (12,5%).  \n   O modelo incorporou informações irrelevantes ou incorretas (ex.: informações de marketing onde deveriam estar informações de atendimento).\n\n---\n\n### 3. **Padrões de Falha**\nAs perguntas mais frequentemente falhadas estão relacionadas a:\n\n- **Tecnologias e ferramentas**:  \n  - n8n, Bubble.io, FastAPI, LangChain.  \n  - Exemplos: \"Qual a função do n8n?\", \"Para que serve o Bubble.io?\".\n\n- **Funções e diferenciais da empresa**:  \n  - \"Qual o diferencial da empresa?\", \"Qual a função deste assistente virtual?\".\n\n- **Processos e protocolos**:  \n  - \"Em quais situações o bot transfere para um humano?\", \"Quais são os pacotes de horas disponíveis para o B...\".\n\n---\n\n### 4. **Recomendações Prioritárias**\nPara melhorar o desempenho do sistema RAG, sugerimos as seguintes ações:\n\n1. **Otimizar o Mecanismo de Recuperação de Contexto**:  \n   - Ajustar os embeddings e o algoritmo de busca para garantir que o contexto relevante seja priorizado.  \n   - Exemplo: Implementar embeddings mais específicos ou usar um mecanismo de busca mais sofisticado (ex.: BM25 + embeddings).\n\n2. **Revisar a Base de Conhecimento**:  \n   - Verificar a consistência e a atualização das informações na base de conhecimento.  \n   - Exemplo: Consolidar informações sobre tecnologias e processos em documentos claros e estruturados.\n\n3. **Melhorar o Prompt Engineering**:  \n   - Desenvolver prompts mais robustos que orientem o modelo a utilizar adequadamente o contexto recuperado.  \n   - Exemplo: Incluir instruções como *\"Use EXCLUSIVAMENTE o contexto recuperado para responder a pergunta.\"*.\n\n4. **Implementar Feedback do Usuário**:  \n   - Adicionar um sistema de feedback para identificar automaticamente perguntas mal respondidas ou incorretas.  \n   - Exemplo: Usar um botão *\"Resposta Incorreta\"* para coletar dados e treinar o modelo.\n\n5. **Monitorar e Avaliar Continuamente**:  \n   - Estabelecer métricas claras (ex.: precisão, recall, F1) e realizar testes regulares.  \n   - Exemplo: Integrar testes automatizados com perguntas rotativamente geradas.\n\n---\n\n### 5. **Quick Wins**\nMelhorias rápidas que podem ser implementadas com baixo esforço e alto impacto:\n\n1. **Ajustar os Embeddings**:  \n   - Modificar o modelo de embedding para priorizar informações mais relevantes.  \n   - Impacto: Melhora imediata na qualidade da recuperação de contexto.\n\n2. **Revisar o Prompt**:  \n   - Incluir instruções claras para o modelo sobre como utilizar o contexto recuperado.  \n   - Exemplo: *\"Responda apenas com base no contexto abaixo. Ignore qualquer informação não mencionada.\"*.\n\n3. **Corrigir a Base de Conhecimento**:  \n   - Identificar e corrigir inconsistências ou informações faltantes na base de conhecimento.  \n   - Impacto: Redução imediata de erros de retrieval_miss.\n\n---\n\n### Conclusão\nO sistema RAG precisa de melhorias focadas em **recuperação de contexto** e **qualidade das respostas**. As recomendações priorizadas e quick wins podem ser implementadas em sequência para garantir resultados tangíveis em curto prazo.\n\n---\n\n## 📉 Estatísticas Gerais\n\n| Métrica | Valor |\n|---------|-------|\n| Score Médio | **4.57/10** |\n| Score Máximo | 10.0/10 |\n| Score Mínimo | 0.0/10 |\n| Excelente (9-10) | 6 |\n| Bom (7-8) | 0 |\n| Regular (5-6) | 0 |\n| Ruim (<5) | 10 |\n\n---\n\n## ❌ Análise de Falhas\n\n### 1. O que acontece se eu precisar de uma tecnologia fora do stac...\n\n**Score:** 0.0/10 | **Prioridade:** Alta | **Categoria:** retrieval_miss\n\n**Resposta Esperada:**\n> Se o cliente solicitar tecnologias fora da lista, analisaremos a viabilidade técnica do caso, sem prometer execução imediata....\n\n**Resposta Gerada:**\n> Não encontrei essa informação específica....\n\n**🔍 Diagnóstico:** A resposta não forneceu a informação solicitada, indicando uma falha na capacidade do sistema de recuperar e utilizar informações relevantes para responder perguntas específicas.\n\n**🎯 Causa Raiz:** retrieval_miss\n\n**💡 Sugestão:** Implementar uma revisão mais aprofundada do esquema de documentos e da estratégia de indexação. Considerar o uso de embeddings mais sofisticados ou ajustar o modelo de busca para melhor capturar similaridades semânticas. Além disso, revisar o contexto recuperado para garantir que todas as informações relevantes sobre tecnologias não padrão estejam incluídas.\n\n---\n\n### 2. Qual é a função deste assistente virtual?...\n\n**Score:** 0.0/10 | **Prioridade:** Alta | **Categoria:** retrieval_miss\n\n**Resposta Esperada:**\n> Sou um assistente virtual inteligente projetado para responder dúvidas sobre serviços, apresentar o stack tecnológico, fornecer preços e agendar reuniões....\n\n**Resposta Gerada:**\n> Não encontrei essa informação específica....\n\n**🔍 Diagnóstico:** A resposta não fornece a função do assistente virtual, conforme a resposta esperada. Em vez disso, a resposta indica que a informação não foi encontrada, o que é incorreto.\n\n**🎯 Causa Raiz:** Falha no mecanismo de recuperação de informações do RAG. O contexto recuperado contém a descrição da função do assistente, mas o sistema não a utilizou adequadamente para gerar uma resposta.\n\n**💡 Sugestão:** Implementar uma verificação adicional no pipeline RAG para garantir que a descrição inicial do assistente seja priorizada e utilizada para responder perguntas sobre sua função. Além disso, adicionar uma fallback strategy para responder diretamente com a descrição inicial quando a pergunta corresponder à função do assistente.\n\n---\n\n### 3. Quais são os pacotes de horas disponíveis para o Brasil?...\n\n**Score:** 0.0/10 | **Prioridade:** Alta | **Categoria:** retrieval_miss\n\n**Resposta Esperada:**\n> Temos pacotes de 10h (R$ 1.000), 20h (R$ 1.800), 40h (R$ 3.200), 80h (R$ 6.000) e 160h (R$ 10.000)....\n\n**Resposta Gerada:**\n> Não encontrei essa informação específica....\n\n**🔍 Diagnóstico:** A resposta do sistema RAG foi incorreta porque ele não recuperou a informação específica sobre os pacotes de horas para o Brasil, apesar de a pergunta ser direta e o contexto relevante estar disponível.\n\n**🎯 Causa Raiz:** retrieval_miss\n\n**💡 Sugestão:** Implementar um mecanismo de busca mais eficiente que possa mapear perguntas semelhantes (ex: 'pacotes de horas', 'pacotes horário', etc.) para os dados corretos. Além disso, garantir que o contexto seja indexado corretamente e que os dados estejam disponíveis no repositório de informações.\n\n---\n\n### 4. Que tipos de serviços vocês oferecem?...\n\n**Score:** 0.71/10 | **Prioridade:** Alta | **Categoria:** retrieval_miss\n\n**Resposta Esperada:**\n> Suporte Técnico, Vendas e Orçamentos, Dúvidas Gerais sobre Tecnologia e Segunda via de Fatura/Pagamentos....\n\n**Resposta Gerada:**\n> Não encontrei essa informação específica na minha base de conhecimento. Posso ajudar com outras perguntas?...\n\n**🔍 Diagnóstico:** A resposta não forneceu a informação solicitada sobre os tipos de serviços oferecidos. Em vez disso, indicou a ausência de informações na base de conhecimento, mesmo quando a pergunta é direta e a resposta esperada é conhecida.\n\n**🎯 Causa Raiz:** Falha de Recuperação (retrieval_miss): A base de conhecimento ou o mecanismo de busca do RAG não recuperou corretamente a informação sobre os serviços oferecidos (Suporte Técnico, Vendas e Orçamentos, Dúvidas Gerais sobre Tecnologia, Segunda via de Fatura/Pagamentos). O contexto recuperado (Protocolos de Atendimento, Estratégia de Marketing) não contém essa informação.\n\n**💡 Sugestão:** 1. Verificar e garantir que a base de conhecimento contenha informações claras e completas sobre os serviços oferecidos, incluindo a lista específica mencionada na resposta esperada.\n2. Implementar uma lógica de reranking ou priorização nos documentos recuperados para garantir que informações sobre serviços oferecidos sejam priorizadas para perguntas relevantes.\n3. Considerar adicionar uma resposta proativa padrão para perguntas sobre serviços oferecidos, caso a informação não seja encontrada na base de conhecimento, informando que os serviços são listados em determinado lugar (ex: página inicial, FAQ).\n\n---\n\n### 5. Em quais situações o bot transfere para um humano?...\n\n**Score:** 0.82/10 | **Prioridade:** Alta | **Categoria:** wrong_context\n\n**Resposta Esperada:**\n> Transfiro quando: o usuário solicita explicitamente; o assunto é financeiro complexo; não encontro a resposta após 2 tentativas; ou o projeto requer análise técnica fora do stack padrão....\n\n**Resposta Gerada:**\n> Em situações de casos complexos, o sistema transfere o atendimento para um humano. [cite_start]Prontos para escalar seu projeto? Entre em contato para uma análise de viabilidade. [cite: 6]...\n\n**🔍 Diagnóstico:** A resposta não está alinhada com a pergunta. Fala sobre marketing, vendas e contato, ignorando completamente a questão sobre situações de transferência para humanos.\n\n**🎯 Causa Raiz:** Retrieval Miss + Model Hallucination. O modelo recuperou informações irrelevantes (marketing, vendas) e ignorou completamente o contexto sobre transferência de chamados (seção 6. Protocolos de Atendimento).\n\n**💡 Sugestão:** Implementar um prompt mais estruturado para o RAG, especificando que a resposta deve ser baseada apenas nas informações sobre transferência de chamados. Ajustar o sistema de retrieval para priorizar a seção 6 do contexto.\n\n---\n\n### 6. Qual o diferencial da empresa?...\n\n**Score:** 1.21/10 | **Prioridade:** Alta | **Categoria:** retrieval_miss\n\n**Resposta Esperada:**\n> Oferecemos senioridade de 15 anos de mercado, velocidade de entrega usando Bubble.io e inteligência real através de automações com IA....\n\n**Resposta Gerada:**\n> Resposta:  \nO diferencial da empresa está em sua capacidade de entregar soluções de software e automação com IA de forma rápida e eficiente, utilizando ferramentas avançadas como **Bubble.io**, **n8n*...\n\n**🔍 Diagnóstico:** A resposta gerada omitiu completamente o diferencial de 'senioridade de 15 anos de mercado' mencionado no contexto recuperado, mesmo sendo a principal vantagem esperada na resposta. Embora incluísse informações técnicas relevantes sobre ferramentas, não destacou esse aspecto crucial.\n\n**🎯 Causa Raiz:** Retrieval Miss (retrieval_miss). O contexto recuperado contém a informação crítica sobre a 'senioridade de 15 anos' (referência ao desenvolvedor freelancer), mas essa informação NÃO foi incorporada na resposta final. O sistema RAG falhou em utilizar adequadamente o contexto relevante para compor a resposta esperada.\n\n**💡 Sugestão:** Ajustar o modelo de pontuação de similaridade ou o pipeline de processamento do RAG para dar prioridade e garantir a incorporação de informações contextuais que respondem diretamente às palavras-chave da pergunta (como 'diferencial' ou 'senioridade'). Verificar se o contexto documental foi adequadamente indexado e se o modelo de RAG está configurado para combinar perguntas com respostas que abrangam todas as dimensões do diferencial esperado.\n\n---\n\n### 7. Quais tecnologias compõem o stack principal?...\n\n**Score:** 1.46/10 | **Prioridade:** Alta | **Categoria:** incomplete_answer\n\n**Resposta Esperada:**\n> Trabalhamos estritamente com: Bubble.io (No-Code Full-Stack), n8n (Integrações), LangChain/LangGraph (Agentes de IA) e FastAPI (Backend de alta performance)....\n\n**Resposta Gerada:**\n> Resposta: O stack principal é composto por: **Bubble.io (Full-Stack Web & Mobile)**, **n8n (Orquestração & Integração)**, **LangChain & LangGraph (Agentes de IA)** e **FastAPI (High-Performance Backen...\n\n**🔍 Diagnóstico:** A resposta, embora tecnicamente correta, não adiciona valor ou inovação. Ela simplesmente repete o contexto recuperado sem oferecer insights, detalhes ou diferenciais relevantes para o usuário.\n\n**🎯 Causa Raiz:** Falha na integração RAG: O modelo não utilizou adequadamente o contexto recuperado para gerar uma resposta criativa, útil ou inovadora. Houve uma perda de oportunidade para agregar valor.\n\n**💡 Sugestão:** Melhore a integração RAG utilizando embeddings mais sofisticados ou técnicas de prompt engineering para incentivar o modelo a ir além do contexto recuperado e fornecer respostas mais valiosas, como diferenciais, casos de uso ou benefícios.\n\n---\n\n### 8. Para que serve o Bubble.io nos projetos?...\n\n**Score:** 2.75/10 | **Prioridade:** Alta | **Categoria:** wrong_context\n\n**Resposta Esperada:**\n> Usamos Bubble.io para desenvolvimento Web e Mobile (PWA), criando plataformas robustas e escaláveis em semanas, não meses....\n\n**Resposta Gerada:**\n> Bubble.io é uma plataforma de desenvolvimento no-code utilizada para criar interfaces e sistemas complexos, permitindo entregas rápidas em semanas, em vez de meses. Ela é complementar às tecnologias d...\n\n**🔍 Diagnóstico:** A resposta é excessivamente detalhada e inclui informações irrelevantas sobre outras tecnologias (n8n, LangChain, FastAPI), desviando-se completamente do foco da pergunta sobre o propósito do Bubble.io.\n\n**🎯 Causa Raiz:** Retrieval_miss/wrong_context: O contexto recuperado incluiu informações sobre outras tecnologias irrelevantes (n8n, LangChain, FastAPI) que deveriam ter sido ignoradas ou filtradas pelo modelo.\n\n**💡 Sugestão:** Simplificar a resposta, focando apenas no propósito principal do Bubble.io, sem incorporar outras tecnologias ou informações irrelevantes.\n\n---\n\n### 9. Quando o FastAPI é utilizado?...\n\n**Score:** 3.43/10 | **Prioridade:** Alta | **Categoria:** incomplete_answer\n\n**Resposta Esperada:**\n> Usamos FastAPI para backends que exigem processamento pesado ou lógica personalizada em Python que o No-code não suporta....\n\n**Resposta Gerada:**\n> O FastAPI é utilizado para processamento pesado e lógicas customizadas que excedem as capacidades do No-Code. [cite: 2]...\n\n**🔍 Diagnóstico:** A resposta não responde diretamente à pergunta 'Quando o FastAPI é utilizado?'. Embora contenha informações relevantes, falta explicitar os casos de uso, que é o foco da pergunta.\n\n**🎯 Causa Raiz:** retrieval_miss: O contexto recuperado menciona explicitamente os casos de uso do FastAPI (processamento pesado e lógicas customizadas que excedem o No-Code), mas a resposta não incorporou essa informação de forma direta.\n\n**💡 Sugestão:** O sistema RAG deve incorporar explicitamente o contexto recuperado na resposta final, garantindo que os casos de uso mencionados no contexto sejam apresentados como resposta direta à pergunta.\n\n---\n\n### 10. Qual a função do n8n nos serviços?...\n\n**Score:** 4.57/10 | **Prioridade:** Média | **Categoria:** incomplete_answer\n\n**Resposta Esperada:**\n> O n8n é utilizado para orquestração de fluxos de trabalho e integração de sistemas via API....\n\n**Resposta Gerada:**\n> n8n é o \"cérebro das operações\". Ele conecta APIs, automatiza fluxos de trabalho e integra diferentes sistemas sem fricção. [cite: 4]...\n\n**🔍 Diagnóstico:** A resposta gerada fornece informações corretas sobre o n8n, mas não responde diretamente à pergunta específica sobre sua função nos serviços. Embora mencione a automação de fluxos de trabalho e integração de sistemas, falta a definição clara de sua função como ferramenta de orquestração e integração via API.\n\n**🎯 Causa Raiz:** A resposta do modelo não foi específica o suficiente para atender à pergunta direta do usuário. O contexto recuperado contém a informação correta, mas o modelo não a apresentou de forma concisa e direta.\n\n**💡 Sugestão:** O modelo deve priorizar respostas mais diretas e concisas para perguntas específicas, mesmo quando o contexto for mais amplo. A resposta deve estruturar as informações de forma a responder exatamente à pergunta, sem necessidade de explicações adicionais.\n\n---\n\n## ✅ Respostas Corretas\n\n| Pergunta | Score |\n|----------|-------|\n| Quem é o responsável pelos desenvolvimentos?... | 10.0/10 |\n| Qual o valor da hora avulsa para clientes no Brasi... | 9.0/10 |\n| Qual o valor da hora para clientes internacionais?... | 10.0/10 |\n| Quais são os pacotes para clientes internacionais?... | 10.0/10 |\n| Qual o horário de atendimento humano?... | 9.7/10 |\n| O que vocês fazem com LangChain e LangGraph?... | 9.41/10 |\n",
+          "metadata": {
+            "source": "./data\\benchmark_report.md"
+          }
+        }
+      ],
+      "chunk_count": 1,
+      "total_chars": 17286
+    },
+    {
+      "filename": "company_info.txt",
+      "filepath": "C:\\Users\\mandr\\OneDrive\\Documentos\\Projeto\\agent-multichat\\data\\company_info.txt",
+      "extension": ".txt",
+      "size_bytes": 4575,
+      "modified_at": "2026-02-04T15:23:54.701755",
+      "file_hash": "872e6fdb5af79772f6778d7345379d3d",
+      "type": "text",
+      "chunks": [
+        {
+          "content": "# FAQ AND COMPANY KNOWLEDGE - KNOWLEDGE BASE (RAG)\n\n## 1. What do we do?\n\nI am an independent developer (freelancer) specializing in software development and AI automation with over 15 years of market experience.\n\n**IMPORTANT:** My work is strictly focused on the following technology stack:\n* **Bubble.io** (Full-Stack No-Code Development)\n* **n8n** (Integrations and Orchestration)\n* **LangChain / LangGraph** (Advanced AI Agents)\n* **FastAPI** (High-performance backend and APIs)\n\n*Note:* If the client requests technologies outside this list, the standard response should be that we will **analyze the feasibility of the case**, without promising immediate execution.\n\n## 2. What is the bot's function?\n\nI am an intelligent virtual assistant designed to answer questions about services, present the technology stack, provide pricing information, and schedule meetings. ## 3. Which department of the company does it represent?\n\nI represent the Customer Service, Sales, and General Inquiries department.\n\n## 4. When should it forward the message to another bot or contact?\n\nI should forward it to a human (the developer) in the following situations:\n\n* When the user explicitly requests to speak with a human agent.\n\n* When the subject is complex financial (e.g., refund, contract renegotiation).\n\n* When I don't know the answer or can't find the information in the context after 2 attempts.\n\n* When the client presents a project that falls outside the standard stack and requires technical analysis.\n\n## 5. Prices of our products\n\n### Brazilian Clients (BRL - R$)\n* **Individual hour:** R$ 120.00 / hour\n* **10-hour package:** R$ 1,000.00 (R$ 100/h)\n* **20-hour package:** R$ 1,800.00 (R$ 90/h)\n* **40-hour package:** R$ 3,200.00 (R$ 80/h)\n* **80-hour package:** R$ 6,000.00 (R$ 75/h)\n* **160-hour package:** R$ 10,000.00 (R$ 62.50/h)\n\n### Foreign / International Clients (USD - $)\n* **Individual hour:** $50.00 / hour\n* **10-hour package:** $400.00 ($40/h)\n* **20-hour package:** $700.00 ($35/h)\n* **40-hour package:** $1,300.00 ($32.50/h)\n* **80-hour package:** $2,400.00 ($30/h)\n* **160-hour package:** $4,000.00 ($25/h)\n\n## 6. Service Hours\n* **Automated Service (Bot):** 24 hours a day, 7 days a week.\n\n* **Human Service:** Monday to Friday, from 9 am to 6 pm (Brasilia Time).\n\n## 7. Types of Services\n* Technical Support\n* Sales and Quotes\n* General Questions about the Technology Stack\n* Duplicate Invoice / Payments\n\n## 8. Who We Are (History and Brand)\nI am an independent software developer with over 15 years of experience in the technology market. My career was consolidated within large corporations, where I acquired in-depth know-how in systems architecture, scalable processes, and highly complex solutions.\n\nToday, I focus my experience on offering the most advanced agility and intelligence: the union of No-code development via Bubble.io with the power of AI Automations. My brand is defined by delivering enterprise-quality software, but with the speed and personalized service that only an independent specialist can offer.\n\n## 9. Our Services (Technical Scope)\nWe work exclusively with services that involve our core stack:\n* **Full-Stack Development (Bubble.io):** Creation of robust platforms, dashboards, and complex systems with scalable architecture.\n* **Process Automation with AI (n8n):** Integration of tools via API and creation of intelligent workflows.\n* **AI Agent Engineering (LangChain/LangGraph):** Development of customized autonomous agents and intelligent support with context memory.\n* **High-Performance Backend (FastAPI):** Creation of customized APIs to support complex logic that No-code alone cannot handle.\n\n## 10. What we can offer the client (Differentiators)\n* **Senior Experience:** 15 years of corporate market experience applied to your project.\n* **Speed ​​(Time-to-Market):** Use of Bubble.io for deliveries in weeks, not months.\n\n* **Real Intelligence:** Automations that reduce costs and increase productivity through AI.\n\n* **Scalable Architecture:** Projects designed to grow.\n\n## 11. Technology Stack and Specialties (Business Rules)\nTo ensure efficiency, we **restrict** our work to the following market-leading tools.\n\n*If the client requests another technology, please inform us so we can analyze the technical feasibility.*\n\n* **Bubble.io:** For all Web and Mobile (PWA) development.\n\n* **n8n:** For all system integrations and workflow orchestration.\n\n* **LangChain & LangGraph:** For building the logic of AI Agents.\n\n* **FastAPI:** For backends that require heavy processing or custom logic in Python.",
+          "metadata": {
+            "source": "./data\\company_info.txt"
+          }
+        }
+      ],
+      "chunk_count": 1,
+      "total_chars": 4571
+    },
+    {
+      "filename": "questions.csv",
+      "filepath": "C:\\Users\\mandr\\OneDrive\\Documentos\\Projeto\\agent-multichat\\data\\questions.csv",
+      "extension": ".csv",
+      "size_bytes": 3213,
+      "modified_at": "2026-02-06T10:36:03.880132",
+      "file_hash": "2dd6304c2ea4dec46f8399494df9ddee",
+      "type": "csv",
+      "chunks": [
+        {
+          "content": "question: [cite_start]\"Quem é o responsável pelos desenvolvimentos?\"\nanswer: Sou um desenvolvedor independente (freelancer) especializado em software e automação com IA, com mais de 15 anos de experiência de mercado.\nreference: [cite: 2]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 0
+          }
+        },
+        {
+          "content": "question: [cite_start]\"Quais tecnologias compõem o stack principal?\"\nanswer: Trabalhamos estritamente com: Bubble.io (No-Code Full-Stack), n8n (Integrações), LangChain/LangGraph (Agentes de IA) e FastAPI (Backend de alta performance).\nreference: [cite: 3]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 1
+          }
+        },
+        {
+          "content": "question: [cite_start]\"O que acontece se eu precisar de uma tecnologia fora do stack padrão?\"\nanswer: Se o cliente solicitar tecnologias fora da lista, analisaremos a viabilidade técnica do caso, sem prometer execução imediata.\nreference: [cite: 3, 25]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 2
+          }
+        },
+        {
+          "content": "question: [cite_start]\"Qual é a função deste assistente virtual?\"\nanswer: Sou um assistente virtual inteligente projetado para responder dúvidas sobre serviços, apresentar o stack tecnológico, fornecer preços e agendar reuniões.\nreference: [cite: 4]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 3
+          }
+        },
+        {
+          "content": "question: [cite_start]\"Em quais situações o bot transfere para um humano?\"\nanswer: Transfiro quando: o usuário solicita explicitamente; o assunto é financeiro complexo; não encontro a resposta após 2 tentativas; ou o projeto requer análise técnica fora do stack padrão.\nreference: [cite: 7, 8, 9, 10]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 4
+          }
+        },
+        {
+          "content": "question: [cite_start]\"Qual o valor da hora avulsa para clientes no Brasil?\"\nanswer: Para clientes brasileiros, a hora avulsa custa R$ 120,00.\nreference: [cite: 11]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 5
+          }
+        },
+        {
+          "content": "question: [cite_start]\"Quais são os pacotes de horas disponíveis para o Brasil?\"\nanswer: Temos pacotes de 10h (R$ 1.000), 20h (R$ 1.800), 40h (R$ 3.200), 80h (R$ 6.000) e 160h (R$ 10.000).\nreference: [cite: 11]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 6
+          }
+        },
+        {
+          "content": "question: [cite_start]\"Qual o valor da hora para clientes internacionais?\"\nanswer: Para clientes internacionais, a hora avulsa é $50.00 USD.\nreference: [cite: 11]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 7
+          }
+        },
+        {
+          "content": "question: [cite_start]\"Quais são os pacotes para clientes internacionais?\"\nanswer: Pacotes internacionais: 10h ($400), 20h ($700), 40h ($1.300), 80h ($2.400) e 160h ($4.000).\nreference: [cite: 11]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 8
+          }
+        },
+        {
+          "content": "question: Qual o horário de atendimento humano?\nanswer: O atendimento humano funciona de segunda a sexta, das 09h às 18h (Horário de Brasília). [cite_start]O bot funciona 24/7.\nreference: [cite: 11, 12]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 9
+          }
+        },
+        {
+          "content": "question: [cite_start]\"Que tipos de serviços vocês oferecem?\"\nanswer: Suporte Técnico, Vendas e Orçamentos, Dúvidas Gerais sobre Tecnologia e Segunda via de Fatura/Pagamentos.\nreference: [cite: 13]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 10
+          }
+        },
+        {
+          "content": "question: [cite_start]\"Qual o diferencial da empresa?\"\nanswer: Oferecemos senioridade de 15 anos de mercado, velocidade de entrega usando Bubble.io e inteligência real através de automações com IA.\nreference: [cite: 21, 22, 23]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 11
+          }
+        },
+        {
+          "content": "question: [cite_start]\"Para que serve o Bubble.io nos projetos?\"\nanswer: Usamos Bubble.io para desenvolvimento Web e Mobile (PWA), criando plataformas robustas e escaláveis em semanas, não meses.\nreference: [cite: 17, 22, 25]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 12
+          }
+        },
+        {
+          "content": "question: [cite_start]\"Qual a função do n8n nos serviços?\"\nanswer: O n8n é utilizado para orquestração de fluxos de trabalho e integração de sistemas via API.\nreference: [cite: 18, 26]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 13
+          }
+        },
+        {
+          "content": "question: [cite_start]\"O que vocês fazem com LangChain e LangGraph?\"\nanswer: Utilizamos para a engenharia de Agentes de IA, criando lógicas autônomas e suporte inteligente com memória de contexto.\nreference: [cite: 19, 26]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 14
+          }
+        },
+        {
+          "content": "question: [cite_start]\"Quando o FastAPI é utilizado?\"\nanswer: Usamos FastAPI para backends que exigem processamento pesado ou lógica personalizada em Python que o No-code não suporta.\nreference: [cite: 20, 27]",
+          "metadata": {
+            "source": "./data\\questions.csv",
+            "row": 15
+          }
+        }
+      ],
+      "chunk_count": 16,
+      "total_chars": 3491
+    },
+    {
+      "filename": "Company_Profile_Report.pdf",
+      "filepath": "C:\\Users\\mandr\\OneDrive\\Documentos\\Projeto\\agent-multichat\\data\\raw_pdf_flies\\Company_Profile_Report.pdf",
+      "extension": ".pdf",
+      "size_bytes": 7111,
+      "modified_at": "2026-02-06T10:50:13.623006",
+      "file_hash": "7b2c5dbb7ad383f99ce8e42112753bbb",
+      "type": "pdf",
+      "chunks": [
+        {
+          "content": "DOSSIÊ ESTRATÉGICO\n Software Development & AI Automation\n Perfil Corporativo, Projetos e Estratégia\n Ano: 2026",
+          "metadata": {
+            "producer": "ReportLab PDF Library - www.reportlab.com",
+            "creator": "(unspecified)",
+            "creationdate": "2026-02-06T13:49:43+00:00",
+            "author": "(anonymous)",
+            "keywords": "",
+            "moddate": "2026-02-06T13:49:43+00:00",
+            "subject": "(unspecified)",
+            "title": "(anonymous)",
+            "trapped": "/False",
+            "source": "./data\\raw_pdf_flies\\Company_Profile_Report.pdf",
+            "total_pages": 6,
+            "page": 0,
+            "page_label": "1"
+          }
+        },
+        {
+          "content": "1. Quem Somos e Nossa Visão\nSomos uma operação especializada em desenvolvimento de software e automação com Inteligência\nArtificial, liderada por um desenvolvedor com mais de 15 anos de experiência no mercado corporativo.\nDiferente de agências tradicionais ou freelancers iniciantes, nossa marca consolida o know-how de\ngrandes corporações — com foco em arquitetura escalável e processos complexos — com a agilidade\ndo desenvolvimento No-Code.\nNosso objetivo é entregar Enterprise Quality com Freelance Speed. Focamos na união de Bubble.io\npara interfaces e LangChain/n8n para inteligência real.\n2. Stack Tecnológico (Core Business)\nPara garantir eficiência e robustez, restringimos nossa atuação às seguintes tecnologias líderes:\nBubble.io (Full-Stack Web & Mobile)\nUtilizado para criação de plataformas, dashboards e sistemas complexos. Permite entregas em\nsemanas, não meses.\nn8n (Orquestração & Integração)\nO cérebro das operações. Conecta APIs, automatiza fluxos de trabalho e integra diferentes sistemas\nsem fricção.\nLangChain & LangGraph (Agentes de IA)\nEngenharia de agentes autônomos que possuem memória de contexto e capacidade de raciocínio.\nFastAPI (High-Performance Backend)\nBackend em Python para processamento pesado e lógicas customizadas que excedem as\ncapacidades do No-Code.",
+          "metadata": {
+            "producer": "ReportLab PDF Library - www.reportlab.com",
+            "creator": "(unspecified)",
+            "creationdate": "2026-02-06T13:49:43+00:00",
+            "author": "(anonymous)",
+            "keywords": "",
+            "moddate": "2026-02-06T13:49:43+00:00",
+            "subject": "(unspecified)",
+            "title": "(anonymous)",
+            "trapped": "/False",
+            "source": "./data\\raw_pdf_flies\\Company_Profile_Report.pdf",
+            "total_pages": 6,
+            "page": 1,
+            "page_label": "2"
+          }
+        },
+        {
+          "content": "3. Projetos em Destaque & Casos de Uso\nCaso 1: Plataforma CRM Educacional\nDesenvolvimento completo de um CRM educacional utilizando Bubble.io.\nCaso 2: Agente de Análise de Logs (IA)\nAgente autônomo que monitora logs e sugere correções, reduzindo tempo de resposta em 70%.\nCaso 3: Assistente de Reuniões Inteligente\nAutomação via n8n para transcrição, relatórios e ações automáticas.",
+          "metadata": {
+            "producer": "ReportLab PDF Library - www.reportlab.com",
+            "creator": "(unspecified)",
+            "creationdate": "2026-02-06T13:49:43+00:00",
+            "author": "(anonymous)",
+            "keywords": "",
+            "moddate": "2026-02-06T13:49:43+00:00",
+            "subject": "(unspecified)",
+            "title": "(anonymous)",
+            "trapped": "/False",
+            "source": "./data\\raw_pdf_flies\\Company_Profile_Report.pdf",
+            "total_pages": 6,
+            "page": 2,
+            "page_label": "3"
+          }
+        },
+        {
+          "content": "4. Estratégia de Marketing e Crescimento\nNossa estratégia foca em decisores técnicos e fundadores que valorizam velocidade sem perda de\nqualidade.\n- LinkedIn: Casos reais de automação e redução de custos.\n- SEO Técnico: Conteúdo focado em performance e agentes de IA.\n- Parcerias: Agências de design sem braço técnico.",
+          "metadata": {
+            "producer": "ReportLab PDF Library - www.reportlab.com",
+            "creator": "(unspecified)",
+            "creationdate": "2026-02-06T13:49:43+00:00",
+            "author": "(anonymous)",
+            "keywords": "",
+            "moddate": "2026-02-06T13:49:43+00:00",
+            "subject": "(unspecified)",
+            "title": "(anonymous)",
+            "trapped": "/False",
+            "source": "./data\\raw_pdf_flies\\Company_Profile_Report.pdf",
+            "total_pages": 6,
+            "page": 3,
+            "page_label": "4"
+          }
+        },
+        {
+          "content": "5. Investimento e Pacotes\nServiço\nPreço\nHora Avulsa\nR$ 120,00 / h\nPacote 10h\nR$ 1.000,00\nPacote 40h\nR$ 3.200,00\nPacote 80h\nR$ 6.000,00\nPacote 160h\nR$ 10.000,00\nService\nPrice\nSingle Hour\n$ 50.00 / h\nPackage 10h\n$ 400.00\nPackage 40h\n$ 1,300.00\nPackage 160h\n$ 4,000.00",
+          "metadata": {
+            "producer": "ReportLab PDF Library - www.reportlab.com",
+            "creator": "(unspecified)",
+            "creationdate": "2026-02-06T13:49:43+00:00",
+            "author": "(anonymous)",
+            "keywords": "",
+            "moddate": "2026-02-06T13:49:43+00:00",
+            "subject": "(unspecified)",
+            "title": "(anonymous)",
+            "trapped": "/False",
+            "source": "./data\\raw_pdf_flies\\Company_Profile_Report.pdf",
+            "total_pages": 6,
+            "page": 4,
+            "page_label": "5"
+          }
+        },
+        {
+          "content": "6. Protocolos de Atendimento\n Atendimento Bot: 24/7 para triagem.\n Atendimento Humano: Seg–Sex, 09h–18h.\n Escalonamento para casos complexos.\n Prontos para escalar seu projeto?\n Entre em contato para uma análise de viabilidade.",
+          "metadata": {
+            "producer": "ReportLab PDF Library - www.reportlab.com",
+            "creator": "(unspecified)",
+            "creationdate": "2026-02-06T13:49:43+00:00",
+            "author": "(anonymous)",
+            "keywords": "",
+            "moddate": "2026-02-06T13:49:43+00:00",
+            "subject": "(unspecified)",
+            "title": "(anonymous)",
+            "trapped": "/False",
+            "source": "./data\\raw_pdf_flies\\Company_Profile_Report.pdf",
+            "total_pages": 6,
+            "page": 5,
+            "page_label": "6"
+          }
+        }
+      ],
+      "chunk_count": 6,
+      "total_chars": 2598
+    },
+    {
+      "filename": "Sales_Enablement_Dossier_AI_Software.pdf",
+      "filepath": "C:\\Users\\mandr\\OneDrive\\Documentos\\Projeto\\agent-multichat\\data\\raw_pdf_flies\\Sales_Enablement_Dossier_AI_Software.pdf",
+      "extension": ".pdf",
+      "size_bytes": 7711,
+      "modified_at": "2026-02-06T16:11:51.268198",
+      "file_hash": "8d346f75e420964eeea3c78f871bcd98",
+      "type": "pdf",
+      "chunks": [
+        {
+          "content": "SALES ENABLEMENT DOSSIER\n AI Automation & Software Development\n Material Estratégico para Pré■Vendas, Vendas e Fechamento\n Ano: 2026",
+          "metadata": {
+            "producer": "ReportLab PDF Library - www.reportlab.com",
+            "creator": "(unspecified)",
+            "creationdate": "2026-02-06T19:09:58+00:00",
+            "author": "(anonymous)",
+            "keywords": "",
+            "moddate": "2026-02-06T19:09:58+00:00",
+            "subject": "(unspecified)",
+            "title": "(anonymous)",
+            "trapped": "/False",
+            "source": "./data\\raw_pdf_flies\\Sales_Enablement_Dossier_AI_Software.pdf",
+            "total_pages": 7,
+            "page": 0,
+            "page_label": "1"
+          }
+        },
+        {
+          "content": "1. Ideal Customer Profile (ICP)\nNosso ICP é composto por empresas que já validaram demanda, mas sofrem com gargalos\noperacionais, processos manuais ou baixa eficiência de sistemas internos.\nDimensão\nDescrição\nTamanho\nStartups (Seed–Series B) e SMBs estruturadas\nSegmentos\nSaaS, Educação, Serviços Profissionais, HealthTech, FinTech\nDecisores\nFounder, CTO, Head of Ops, Head of Product\nDor Central\nBaixa velocidade de entrega e alto custo operacional",
+          "metadata": {
+            "producer": "ReportLab PDF Library - www.reportlab.com",
+            "creator": "(unspecified)",
+            "creationdate": "2026-02-06T19:09:58+00:00",
+            "author": "(anonymous)",
+            "keywords": "",
+            "moddate": "2026-02-06T19:09:58+00:00",
+            "subject": "(unspecified)",
+            "title": "(anonymous)",
+            "trapped": "/False",
+            "source": "./data\\raw_pdf_flies\\Sales_Enablement_Dossier_AI_Software.pdf",
+            "total_pages": 7,
+            "page": 1,
+            "page_label": "2"
+          }
+        },
+        {
+          "content": "2. Principais Dores do Cliente\n- Time técnico sobrecarregado com backlog infinito\n- Dependência excessiva de freelancers ou agências lentas\n- Custos elevados de desenvolvimento tradicional\n- Falta de automação entre ferramentas internas\n- Decisões baseadas em dados fragmentados",
+          "metadata": {
+            "producer": "ReportLab PDF Library - www.reportlab.com",
+            "creator": "(unspecified)",
+            "creationdate": "2026-02-06T19:09:58+00:00",
+            "author": "(anonymous)",
+            "keywords": "",
+            "moddate": "2026-02-06T19:09:58+00:00",
+            "subject": "(unspecified)",
+            "title": "(anonymous)",
+            "trapped": "/False",
+            "source": "./data\\raw_pdf_flies\\Sales_Enablement_Dossier_AI_Software.pdf",
+            "total_pages": 7,
+            "page": 2,
+            "page_label": "3"
+          }
+        },
+        {
+          "content": "3. Proposta de Valor (Value Proposition)\nEntregamos sistemas e automações com qualidade de consultoria enterprise, mas com velocidade e\ncusto compatíveis com startups e SMBs.\nEixo\nNossa Entrega\nVelocidade\nMVPs e sistemas funcionais em 4–6 semanas\nCusto\nRedução de até 60% vs desenvolvimento tradicional\nEscala\nArquiteturas prontas para crescimento\nIA Aplicada\nAgentes e automações com impacto real no negócio",
+          "metadata": {
+            "producer": "ReportLab PDF Library - www.reportlab.com",
+            "creator": "(unspecified)",
+            "creationdate": "2026-02-06T19:09:58+00:00",
+            "author": "(anonymous)",
+            "keywords": "",
+            "moddate": "2026-02-06T19:09:58+00:00",
+            "subject": "(unspecified)",
+            "title": "(anonymous)",
+            "trapped": "/False",
+            "source": "./data\\raw_pdf_flies\\Sales_Enablement_Dossier_AI_Software.pdf",
+            "total_pages": 7,
+            "page": 3,
+            "page_label": "4"
+          }
+        },
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?",
+          "metadata": {
+            "producer": "ReportLab PDF Library - www.reportlab.com",
+            "creator": "(unspecified)",
+            "creationdate": "2026-02-06T19:09:58+00:00",
+            "author": "(anonymous)",
+            "keywords": "",
+            "moddate": "2026-02-06T19:09:58+00:00",
+            "subject": "(unspecified)",
+            "title": "(anonymous)",
+            "trapped": "/False",
+            "source": "./data\\raw_pdf_flies\\Sales_Enablement_Dossier_AI_Software.pdf",
+            "total_pages": 7,
+            "page": 4,
+            "page_label": "5"
+          }
+        },
+        {
+          "content": "5. Tratamento de Objeções\nObjeção\nResposta Estratégica\n“Bubble não escala”\nEscala quando bem arquitetado. Já suportamos milhares de usuários e integrações complexas.\n“IA é só hype”\nAplicamos IA apenas onde gera ROI mensurável.\n“Prefiro dev tradicional”\nUsamos backend em Python quando No■Code não é suficiente.",
+          "metadata": {
+            "producer": "ReportLab PDF Library - www.reportlab.com",
+            "creator": "(unspecified)",
+            "creationdate": "2026-02-06T19:09:58+00:00",
+            "author": "(anonymous)",
+            "keywords": "",
+            "moddate": "2026-02-06T19:09:58+00:00",
+            "subject": "(unspecified)",
+            "title": "(anonymous)",
+            "trapped": "/False",
+            "source": "./data\\raw_pdf_flies\\Sales_Enablement_Dossier_AI_Software.pdf",
+            "total_pages": 7,
+            "page": 5,
+            "page_label": "6"
+          }
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão de diagnóstico (30–45 min) para mapear automações, IA e ganhos rápidos.",
+          "metadata": {
+            "producer": "ReportLab PDF Library - www.reportlab.com",
+            "creator": "(unspecified)",
+            "creationdate": "2026-02-06T19:09:58+00:00",
+            "author": "(anonymous)",
+            "keywords": "",
+            "moddate": "2026-02-06T19:09:58+00:00",
+            "subject": "(unspecified)",
+            "title": "(anonymous)",
+            "trapped": "/False",
+            "source": "./data\\raw_pdf_flies\\Sales_Enablement_Dossier_AI_Software.pdf",
+            "total_pages": 7,
+            "page": 6,
+            "page_label": "7"
+          }
+        }
+      ],
+      "chunk_count": 7,
+      "total_chars": 2187
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+# Agent Personality & Behavior
+- Act as a Senior Software Architect focused on stability, modularity, and international standards.
+- All code, documentation, and comments must be written in English.
+- Before proposing any code modification, perform a deep analysis of the existing LangGraph flow and wait for explicit approval.
+- Prioritize "Planning Mode" to outline changes and identify potential breaking points before implementation.
+
+# Tech Stack Context
+- **AI Framework**: LangGraph with state-based orchestration.
+- **Backend**: FastAPI integrated with local LLMs.
+- **Local LLM**: Ollama running Llama 3.1 8b on high-end local hardware (RTX 5070 / 32GB RAM).
+- **Python Version**: 3.14 (Maintain strict awareness of Pydantic V1/V2 compatibility issues).
+- **Infrastructure**: Supabase (Database), Coolify (Deployment), and GitHub for version control.
+- **Target Integration**: Bubble.io via custom API endpoints.
+
+# Architectural Constraints
+- **State Integrity**: Do not modify `state.py` (TypedDict schemas) without analyzing its impact on checkpoints and persistence.
+- **Graph Safety**: The `StateGraph` in `graph.py` is the project's heart; do not alter edges, entry points, or conditional logic unless requested.
+- **Node Modularity**: Keep logic isolated in `nodes.py`. If adding a new capability (e.g., log analysis), suggest creating a new file (e.g., `nodes_logs.py`) instead of bloating existing ones.
+
+# Security & Operations
+- **Command Safety**: Never suggest dangerous terminal commands (e.g., `rm -rf`, `mkfs`).
+- **Secret Management**: Do not hardcode API keys or credentials; always utilize the `.env` file.
+- **Network Stability**: Ensure the FastAPI server is configured to bind to `127.0.0.1:8000` for stable local testing on Windows.
+
+# Specialized Project Knowledge
+- **Log Analysis Agent**: Maintain the security-first mindset developed for log scanning and diagnosis nodes.
+- **Writing Agent**: Respect the iterative review/rewrite loops established for high-quality output.

@@ -1,0 +1,29 @@
+/.env copy
+COMMANDS_HELP.md
+*.log
+__pycache__/
+agent_debug.log
+/data/company_info.txt
+.vscode/
+# Logs
+*.log
+agent_debug.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+venv/
+env/
+
+# Frontend (Next.js)
+.next/
+out/
+build/
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+.env

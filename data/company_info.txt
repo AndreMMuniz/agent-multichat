@@ -1,0 +1,93 @@
+# FAQ AND COMPANY KNOWLEDGE - KNOWLEDGE BASE (RAG)
+
+## 1. What do we do?
+
+I am an independent developer (freelancer) specializing in software development and AI automation with over 15 years of market experience.
+
+**IMPORTANT:** My work is strictly focused on the following technology stack:
+* **Bubble.io** (Full-Stack No-Code Development)
+* **n8n** (Integrations and Orchestration)
+* **LangChain / LangGraph** (Advanced AI Agents)
+* **FastAPI** (High-performance backend and APIs)
+
+*Note:* If the client requests technologies outside this list, the standard response should be that we will **analyze the feasibility of the case**, without promising immediate execution.
+
+## 2. What is the bot's function?
+
+I am an intelligent virtual assistant designed to answer questions about services, present the technology stack, provide pricing information, and schedule meetings. ## 3. Which department of the company does it represent?
+
+I represent the Customer Service, Sales, and General Inquiries department.
+
+## 4. When should it forward the message to another bot or contact?
+
+I should forward it to a human (the developer) in the following situations:
+
+* When the user explicitly requests to speak with a human agent.
+
+* When the subject is complex financial (e.g., refund, contract renegotiation).
+
+* When I don't know the answer or can't find the information in the context after 2 attempts.
+
+* When the client presents a project that falls outside the standard stack and requires technical analysis.
+
+## 5. Prices of our products
+
+### Brazilian Clients (BRL - R$)
+* **Individual hour:** R$ 120.00 / hour
+* **10-hour package:** R$ 1,000.00 (R$ 100/h)
+* **20-hour package:** R$ 1,800.00 (R$ 90/h)
+* **40-hour package:** R$ 3,200.00 (R$ 80/h)
+* **80-hour package:** R$ 6,000.00 (R$ 75/h)
+* **160-hour package:** R$ 10,000.00 (R$ 62.50/h)
+
+### Foreign / International Clients (USD - $)
+* **Individual hour:** $50.00 / hour
+* **10-hour package:** $400.00 ($40/h)
+* **20-hour package:** $700.00 ($35/h)
+* **40-hour package:** $1,300.00 ($32.50/h)
+* **80-hour package:** $2,400.00 ($30/h)
+* **160-hour package:** $4,000.00 ($25/h)
+
+## 6. Service Hours
+* **Automated Service (Bot):** 24 hours a day, 7 days a week.
+
+* **Human Service:** Monday to Friday, from 9 am to 6 pm (Brasilia Time).
+
+## 7. Types of Services
+* Technical Support
+* Sales and Quotes
+* General Questions about the Technology Stack
+* Duplicate Invoice / Payments
+
+## 8. Who We Are (History and Brand)
+I am an independent software developer with over 15 years of experience in the technology market. My career was consolidated within large corporations, where I acquired in-depth know-how in systems architecture, scalable processes, and highly complex solutions.
+
+Today, I focus my experience on offering the most advanced agility and intelligence: the union of No-code development via Bubble.io with the power of AI Automations. My brand is defined by delivering enterprise-quality software, but with the speed and personalized service that only an independent specialist can offer.
+
+## 9. Our Services (Technical Scope)
+We work exclusively with services that involve our core stack:
+* **Full-Stack Development (Bubble.io):** Creation of robust platforms, dashboards, and complex systems with scalable architecture.
+* **Process Automation with AI (n8n):** Integration of tools via API and creation of intelligent workflows.
+* **AI Agent Engineering (LangChain/LangGraph):** Development of customized autonomous agents and intelligent support with context memory.
+* **High-Performance Backend (FastAPI):** Creation of customized APIs to support complex logic that No-code alone cannot handle.
+
+## 10. What we can offer the client (Differentiators)
+* **Senior Experience:** 15 years of corporate market experience applied to your project.
+* **Speed ​​(Time-to-Market):** Use of Bubble.io for deliveries in weeks, not months.
+
+* **Real Intelligence:** Automations that reduce costs and increase productivity through AI.
+
+* **Scalable Architecture:** Projects designed to grow.
+
+## 11. Technology Stack and Specialties (Business Rules)
+To ensure efficiency, we **restrict** our work to the following market-leading tools.
+
+*If the client requests another technology, please inform us so we can analyze the technical feasibility.*
+
+* **Bubble.io:** For all Web and Mobile (PWA) development.
+
+* **n8n:** For all system integrations and workflow orchestration.
+
+* **LangChain & LangGraph:** For building the logic of AI Agents.
+
+* **FastAPI:** For backends that require heavy processing or custom logic in Python.
