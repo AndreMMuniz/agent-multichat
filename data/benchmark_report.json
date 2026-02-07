@@ -1,0 +1,568 @@
+{
+  "timestamp": "2026-02-07T09:58:38.384154",
+  "config": {
+    "model": "deepseek-r1:8b",
+    "k": 5
+  },
+  "summary_text": "## Relatório Executivo: Avaliação de Sistema RAG\n\n**Data:** [Data da Avaliação]\n**Sistema Analisado:** Sistema RAG [Nome do Sistema/Assistente, se aplicável]\n\n---\n\n**1. Resumo Geral**\n\nO sistema RAG apresentou desempenho insatisfatório na última avaliação. Com um total de 16 perguntas analisadas, apenas 2 perguntas (12,5%) obtiveram pontuação considerada adequada (score >= 8). O score médio foi de 3,69, significativamente abaixo do esperado. A maioria das falhas (13 perguntas, 81%) foi atribuída ao `retrieval_miss`, seguida por `incomplete_answer` (7 perguntas, 44%) e `unknown` (3 perguntas, 19%). O sistema demonstrou dificuldade em recuperar informações relevantes e fornecer respostas completas e corretas, especialmente para perguntas relacionadas aos serviços, diferencial da empresa e transferência para humanos.\n\n---\n\n**2. Principais Problemas**\n\nOs três principais problemas identificados foram:\n\n1.  **Falha Crítica em Recuperação de Informações (`retrieval_miss`):** Este foi o principal problema, ocorrendo em 6 perguntas (37,5%). O sistema frequentemente recuperou informações irrelevantes ou omitiu dados cruciais necessários para responder adequadamente, como componentes da stack tecnológica, serviços específicos, valor da hora e critérios de transferência.\n2.  **Respostas Incompletas (`incomplete_answer`):** Ocorreu em 7 perguntas (44%). Mesmo quando informações relevantes foram recuperadas, o sistema frequentemente não as utilizou de forma completa para formular uma resposta abrangente, como no caso da definição do diferencial da empresa.\n3.  **Recuperação Incerta (`unknown`):** Ocorreu em 3 perguntas (19%). O sistema não conseguiu determinar se as informações necessárias para responder estavam disponíveis na base de conhecimento ou se a pergunta estava fora do escopo, levando a respostas não classificadas como corretas ou incorretas neste contexto.\n\n---\n\n**3. Padrões de Falha**\n\nAs falhas identificadas seguem alguns padrões:\n\n*   **Perguntas sobre Serviços e Funcionamento:** Múltas perguntas falharam ao tentar obter informações sobre o que o sistema faz, como ele funciona (transferência para humano), pacotes de horas e valores da hora. Isso sugere que a base de conhecimento ou a forma como as informações são indexadas/recuperadas não está alinhada com esses tópicos.\n*   **Perguntas sobre Diferenciais e Identidade:** Perguntas simples sobre o diferencial da empresa e a função do assistente falharam, muitas vezes devido a `retrieval_miss` ou respostas `incomplete_answer`. Isso pode indicar que a base de conhecimento contém a informação, mas ela não foi adequadamente mapeada ou priorizada para respostas diretas.\n*   **Ambiguidade em Referências:** Uma falha específica (Q8) apontou para uma possível ambiguidade ou confusão na referência utilizada pelo sistema, sugerindo que mesmo quando a informação está presente, a forma como o RAG a acessa pode ser frágil.\n*   **Falta de Informação:** Perguntas como a referência específica ao Bubble.io não foram respondidas adequadamente, indicando que talvez essa informação não esteja suficientemente bem documentada ou acessível na base de conhecimento.\n\n---\n\n**4. Recomendações Prioritárias**\n\nPara melhorar significativamente o desempenho do sistema RAG, sugerimos as seguintes ações prioritárias:\n\n1.  **Revisar e Aumentar a Base de Conhecimento:** Avaliar e expandir a base de conhecimento com informações críticas frequentemente faltantes (serviços, valores, transferência, diferencial) e garantir que ela esteja bem estruturada e documentada.\n2.  **Otimizar o Mecanismo de Busca/Recuperação:** Reavaliar o método de busca e a forma como os documentos são pesquisados e combinados para garantir que as informações relevantes sejam priorizadas e recuperadas adequadamente, especialmente para perguntas complexas ou com múltiplas partes.\n3.  **Implementar Feedback e Monitoramento:** Criar um loop de feedback para coletar perguntas mal respondidas pelos usuários e usá-las para iterar e melhorar o sistema RAG, incluindo a base de conhecimento e os processos de recuperação.\n4.  **Revisar a Definição de \"Correto\":** Clarificar e documentar os critérios de avaliação de respostas (score) para garantir consistência e que o sistema esteja alinhado com as expectativas dos usuários.\n\n---\n\n**5. Quick Wins**\n\nMelhorias rápidas que podem ser implementadas com pouca complexidade:\n\n1.  **Ajustar o Prompt Inicial:** Incluir instruções claras no prompt inicial para o modelo de linguagem sobre como lidar com `retrieval_miss` (por exemplo, \"Se não encontrar informações suficientes, explique que não sei antes de tentar responder\").\n2.  **Criar Glossário ou Mapeamento de Termos:** Desenvolver um pequeno glossário ou mapeamento de termos-chave para facilitar a recuperação de informações específicas (ex: termos relacionados a \"Bubble.io\", \"valor da hora\", \"transferência\").\n3.  **Revisar Exemplos de Respostas:** Analisar exemplos de perguntas bem respondidas (as 3 corretas) e identificar padrões que podem ser replicados para outras perguntas semelhantes.\n\n---\n\nO sistema RAG requer urgentes melhorias focadas na qualidade da base de conhecimento e na eficácia da recuperação de informações para atingir níveis de desempenho aceitáveis. As recomendações acima devem ser discutidas e priorizadas em reunião com as partes interessadas.",
+  "results": [
+    {
+      "question": "Quem é o responsável pelos desenvolvimentos?",
+      "expected_answer": "Sou um desenvolvedor independente (freelancer) especializado em software e automação com IA, com mais de 15 anos de experiência de mercado.",
+      "generated_answer": "Sou um desenvolvedor independente (freelancer) especializado em software e automação com IA, com mais de 15 anos de experiência de mercado.",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\nquestion: [cite_start]\"Quem é o responsável pelos desenvolvimentos?\"\nanswer: Sou um desenvolvedor independente (freelancer) especializado em software e automa",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.4852654039859772
+        },
+        {
+          "content": "question: [cite_start]\"Quem é o responsável pelos desenvolvimentos?\"\nanswer: Sou um desenvolvedor independente (freelancer) especializado em software e automação com IA, com mais de 15 anos de experiê",
+          "score": 0.594315767288208
+        },
+        {
+          "content": "4. Estratégia de Marketing e Crescimento\nNossa estratégia foca em decisores técnicos e fundadores que valorizam velocidade sem perda de\nqualidade.\n- LinkedIn: Casos reais de automação e redução de cus",
+          "score": 0.6114201545715332
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão d",
+          "score": 0.6211658716201782
+        },
+        {
+          "content": "5. Tratamento de Objeções\nObjeção\nResposta Estratégica\n“Bubble não escala”\nEscala quando bem arquitetado. Já suportamos milhares de usuários e integrações complexas.\n“IA é só hype”\nAplicamos IA apenas",
+          "score": 0.6458532810211182
+        }
+      ],
+      "score": 10.0,
+      "analysis": {}
+    },
+    {
+      "question": "Quais tecnologias compõem o stack principal?",
+      "expected_answer": "Trabalhamos estritamente com: Bubble.io (No-Code Full-Stack), n8n (Integrações), LangChain/LangGraph (Agentes de IA) e FastAPI (Backend de alta performance).",
+      "generated_answer": "Resposta: n8n (Orquestração & Integração), LangChain & LangGraph (Agentes de IA) e FastAPI (High-Performance Backend) [cite: 2]",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\n1. Quem Somos e Nossa Visão\nSomos uma operação especializada em desenvolvimento de software e automação com Inteligência\nArtificial, liderada por um desenvolv",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.4967438876628876
+        },
+        {
+          "content": "1. Quem Somos e Nossa Visão\nSomos uma operação especializada em desenvolvimento de software e automação com Inteligência\nArtificial, liderada por um desenvolvedor com mais de 15 anos de experiência no",
+          "score": 0.5528003573417664
+        },
+        {
+          "content": "n8n (Orquestração & Integração)\nO cérebro das operações. Conecta APIs, automatiza fluxos de trabalho e integra diferentes sistemas\nsem fricção.\nLangChain & LangGraph (Agentes de IA)\nEngenharia de agen",
+          "score": 0.5747022032737732
+        },
+        {
+          "content": "5. Tratamento de Objeções\nObjeção\nResposta Estratégica\n“Bubble não escala”\nEscala quando bem arquitetado. Já suportamos milhares de usuários e integrações complexas.\n“IA é só hype”\nAplicamos IA apenas",
+          "score": 0.5782351493835449
+        },
+        {
+          "content": "question: [cite_start]\"Quem é o responsável pelos desenvolvimentos?\"\nanswer: Sou um desenvolvedor independente (freelancer) especializado em software e automação com IA, com mais de 15 anos de experiê",
+          "score": 0.600082278251648
+        }
+      ],
+      "score": 3.64,
+      "analysis": {
+        "diagnosis": "A resposta omitiu explicitamente 'Bubble.io' (No-Code Full-Stack) e mencionou incorretamente 'Enterprise Quality' (que não faz parte da stack esperada).",
+        "root_cause": "Retrieval Miss: O contexto recuperado incluiu informações irrelevantes (como a visão da empresa) que interferiram na resposta, e o modelo não recuperou adequadamente todos os componentes da stack (faltou 'Bubble.io').",
+        "suggestion": "Revisar o mecanismo de busca e embeddings para garantir que todas as tecnologias da stack (incluindo Bubble.io) sejam priorizadas na recuperação de contexto. Além disso, validar o prompt para evitar interpretações adicionais (como 'Enterprise Quality').",
+        "priority": "Alta",
+        "failure_category": "retrieval_miss"
+      }
+    },
+    {
+      "question": "O que acontece se eu precisar de uma tecnologia fora do stack padrão?",
+      "expected_answer": "Se o cliente solicitar tecnologias fora da lista, analisaremos a viabilidade técnica do caso, sem prometer execução imediata.",
+      "generated_answer": "O stack padrão da empresa é composto por **n8n**, **LangChain & LangGraph** e **FastAPI**. No entanto, entendemos que às vezes é necessário utilizar tecnologias externas ou não padrão. \n\nSe precisar de uma tecnologia fora do stack padrão, oferecemos suporte técnico para integrá-la e garantir que funcione perfeitamente com nossos serviços. Nossa equipe está pronta para ajudar você a encontrar a melhor solução para o seu caso. \n\nNão encontramos informações específicas sobre preços ou pacotes para esse serviço na base de conhecimento.",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\n5. Tratamento de Objeções\nObjeção\nResposta Estratégica\n“Bubble não escala”\nEscala quando bem arquitetado. Já suportamos milhares de usuários e integrações com",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.36934342980384827
+        },
+        {
+          "content": "5. Tratamento de Objeções\nObjeção\nResposta Estratégica\n“Bubble não escala”\nEscala quando bem arquitetado. Já suportamos milhares de usuários e integrações complexas.\n“IA é só hype”\nAplicamos IA apenas",
+          "score": 0.5513917207717896
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão d",
+          "score": 0.5515746474266052
+        },
+        {
+          "content": "**🎯 Causa Raiz:** Falha de Recuperação (retrieval_miss): A base de conhecimento ou o mecanismo de busca do RAG não recuperou corretamente a informação sobre os serviços oferecidos (Suporte Técnico, Ve",
+          "score": 0.5800365805625916
+        },
+        {
+          "content": "n8n (Orquestração & Integração)\nO cérebro das operações. Conecta APIs, automatiza fluxos de trabalho e integra diferentes sistemas\nsem fricção.\nLangChain & LangGraph (Agentes de IA)\nEngenharia de agen",
+          "score": 0.6041266918182373
+        }
+      ],
+      "score": 1.61,
+      "analysis": {
+        "diagnosis": "A resposta está incompleta, pois menciona o suporte técnico para tecnologias externas, mas não fornece informações sobre preços ou pacotes, mesmo tendo sido recuperada a informação sobre serviços de suporte técnico.",
+        "root_cause": "retrieval_miss: A base de conhecimento contém informações sobre serviços de suporte técnico, vendas e orçamentos, mas o mecanismo de busca do RAG não recuperou adequadamente essas informações.",
+        "suggestion": "Revisar a base de conhecimento para garantir que todas as informações relevantes, incluindo detalhes sobre preços e pacotes, estejam disponíveis e facilmente recuperáveis. Além disso, ajustar o mecanismo de busca para melhor cobrir variações de consulta.",
+        "priority": "Alta",
+        "failure_category": "incomplete_answer"
+      }
+    },
+    {
+      "question": "Qual é a função deste assistente virtual?",
+      "expected_answer": "Sou um assistente virtual inteligente projetado para responder dúvidas sobre serviços, apresentar o stack tecnológico, fornecer preços e agendar reuniões.",
+      "generated_answer": "Não encontrei essa informação específica.",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\n6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo princ",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.39795058965682983
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão d",
+          "score": 0.5215033292770386
+        },
+        {
+          "content": "n8n (Orquestração & Integração)\nO cérebro das operações. Conecta APIs, automatiza fluxos de trabalho e integra diferentes sistemas\nsem fricção.\nLangChain & LangGraph (Agentes de IA)\nEngenharia de agen",
+          "score": 0.5826476812362671
+        },
+        {
+          "content": "question: [cite_start]\"Quem é o responsável pelos desenvolvimentos?\"\nanswer: Sou um desenvolvedor independente (freelancer) especializado em software e automação com IA, com mais de 15 anos de experiê",
+          "score": 0.5838056802749634
+        },
+        {
+          "content": "4. Estratégia de Marketing e Crescimento\nNossa estratégia foca em decisores técnicos e fundadores que valorizam velocidade sem perda de\nqualidade.\n- LinkedIn: Casos reais de automação e redução de cus",
+          "score": 0.5922770500183105
+        }
+      ],
+      "score": 0.0,
+      "analysis": {
+        "diagnosis": "A resposta não fornece a função do assistente virtual, apenas indicando a incapacidade de encontrar a informação. Isso representa uma falha na capacidade do sistema de responder perguntas básicas sobre sua própria identidade.",
+        "root_cause": "Retrieval Miss (retrieval_miss). O contexto recuperado contém informações relevantes sobre o sistema (sales pitch, ferramentas, estratégias), mas o modelo não conseguiu mapear adequadamente a pergunta sobre a função do assistente para essas informações, especialmente a resposta esperada que define explicitamente a função.",
+        "suggestion": "Implementar uma lógica de combinação mais sofisticada no pipeline RAG. O modelo deve ser treinado para reconhecer que, embora o contexto recuperado não contenha uma definição literal de 'função' como na resposta esperada, ele contém todas as informações necessárias para construir essa resposta. Utilizar embeddings mais sofisticados ou técnicas de rag chaining para combinar múltiplas referências pode ajudar.",
+        "priority": "Alta",
+        "failure_category": "incomplete_answer"
+      }
+    },
+    {
+      "question": "Em quais situações o bot transfere para um humano?",
+      "expected_answer": "Transfiro quando: o usuário solicita explicitamente; o assunto é financeiro complexo; não encontro a resposta após 2 tentativas; ou o projeto requer análise técnica fora do stack padrão.",
+      "generated_answer": "Não encontrei essa informação específica.",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\n**🎯 Causa Raiz:** Falha de Recuperação (retrieval_miss): A base de conhecimento ou o mecanismo de busca do RAG não recuperou corretamente a informação sobre o",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.4337039589881897
+        },
+        {
+          "content": "**🎯 Causa Raiz:** Falha de Recuperação (retrieval_miss): A base de conhecimento ou o mecanismo de busca do RAG não recuperou corretamente a informação sobre os serviços oferecidos (Suporte Técnico, Ve",
+          "score": 0.5003371834754944
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão d",
+          "score": 0.5489498972892761
+        },
+        {
+          "content": "**🔍 Diagnóstico:** A resposta gerada omitiu completamente o diferencial de 'senioridade de 15 anos de mercado' mencionado no contexto recuperado, mesmo sendo a principal vantagem esperada na resposta.",
+          "score": 0.5674118995666504
+        },
+        {
+          "content": "question: Qual o horário de atendimento humano?\nanswer: O atendimento humano funciona de segunda a sexta, das 09h às 18h (Horário de Brasília). [cite_start]O bot funciona 24/7.\nreference: [cite: 11, 1",
+          "score": 0.5942584276199341
+        }
+      ],
+      "score": 0.65,
+      "analysis": {
+        "diagnosis": "A resposta gerada não forneceu a informação solicitada sobre os critérios de transferência do bot para um humano. Em vez disso, apenas indicou que a informação não foi encontrada.",
+        "root_cause": "retrieval_miss: O mecanismo de busca do RAG não recuperou a informação relevante sobre os critérios de transferência do bot, que estão documentados no contexto.",
+        "suggestion": "Implementar uma consulta de busca mais eficiente ou garantir que a base de conhecimento contenha explicitamente os critérios de transferência do bot para uma recuperação adequada.",
+        "priority": "Alta",
+        "failure_category": "retrieval_miss"
+      }
+    },
+    {
+      "question": "Qual o valor da hora avulsa para clientes no Brasil?",
+      "expected_answer": "Para clientes brasileiros, a hora avulsa custa R$ 120,00.",
+      "generated_answer": "O valor da hora avulsa para clientes no Brasil é **R$ 120,00**. [cite: 11]",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\n6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo princ",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.4727312922477722
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão d",
+          "score": 0.5858231782913208
+        },
+        {
+          "content": "**🎯 Causa Raiz:** Falha de Recuperação (retrieval_miss): A base de conhecimento ou o mecanismo de busca do RAG não recuperou corretamente a informação sobre os serviços oferecidos (Suporte Técnico, Ve",
+          "score": 0.6399059295654297
+        },
+        {
+          "content": "question: [cite_start]\"Qual o valor da hora avulsa para clientes no Brasil?\"\nanswer: Para clientes brasileiros, a hora avulsa custa R$ 120,00.\nreference: [cite: 11]",
+          "score": 0.6404465436935425
+        },
+        {
+          "content": "**🔍 Diagnóstico:** A resposta gerada omitiu completamente o diferencial de 'senioridade de 15 anos de mercado' mencionado no contexto recuperado, mesmo sendo a principal vantagem esperada na resposta.",
+          "score": 0.6743621826171875
+        }
+      ],
+      "score": 3.48,
+      "analysis": {
+        "diagnosis": "A resposta gerada não forneceu a informação correta sobre o valor da hora avulsa, pois incluiu informações irrelevantes e omitiu completamente a resposta esperada.",
+        "root_cause": "retrieval_miss",
+        "suggestion": "Revisar o mecanismo de busca do RAG para garantir que ele priorize documentos que contenham informações sobre valores e preços, e revisar a base de conhecimento para garantir que informações financeiras estejam bem indexadas.",
+        "priority": "Alta",
+        "failure_category": "retrieval_miss"
+      }
+    },
+    {
+      "question": "Quais são os pacotes de horas disponíveis para o Brasil?",
+      "expected_answer": "Temos pacotes de 10h (R$ 1.000), 20h (R$ 1.800), 40h (R$ 3.200), 80h (R$ 6.000) e 160h (R$ 10.000).",
+      "generated_answer": "Não encontrei essa informação específica.",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\n6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo princ",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.43116483092308044
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão d",
+          "score": 0.5311866998672485
+        },
+        {
+          "content": "6. Protocolos de Atendimento\n Atendimento Bot: 24/7 para triagem.\n Atendimento Humano: Seg–Sex, 09h–18h.\n Escalonamento para casos complexos.\n Prontos para escalar seu projeto?\n Entre em contato pa",
+          "score": 0.5697799324989319
+        },
+        {
+          "content": "4. Estratégia de Marketing e Crescimento\nNossa estratégia foca em decisores técnicos e fundadores que valorizam velocidade sem perda de\nqualidade.\n- LinkedIn: Casos reais de automação e redução de cus",
+          "score": 0.5976299047470093
+        },
+        {
+          "content": "5. Tratamento de Objeções\nObjeção\nResposta Estratégica\n“Bubble não escala”\nEscala quando bem arquitetado. Já suportamos milhares de usuários e integrações complexas.\n“IA é só hype”\nAplicamos IA apenas",
+          "score": 0.6159985065460205
+        }
+      ],
+      "score": 0.0,
+      "analysis": {
+        "diagnosis": "A resposta não forneceu a informação solicitada pela pergunta. Em vez disso, apenas indicou a ausência de dados, o que é uma resposta insatisfatória e ineficaz para a consulta do usuário.",
+        "root_cause": "retrieval_miss",
+        "suggestion": "1. Verificar se os dados sobre os pacotes de horas estão disponíveis na base de conhecimento do sistema e se estão corretamente indexados. 2. Implementar mecanismos de busca mais eficientes para garantir que respostas relevantes sejam encontradas para consultas específicas como esta. 3. Educar o modelo para fornecer respostas mais proativas quando a informação é encontrada, mesmo que não esteja totalmente satisfação a pergunta.",
+        "priority": "Alta",
+        "failure_category": "incomplete_answer"
+      }
+    },
+    {
+      "question": "Qual o valor da hora para clientes internacionais?",
+      "expected_answer": "Para clientes internacionais, a hora avulsa é $50.00 USD.",
+      "generated_answer": "Para clientes internacionais, a hora avulsa custa **$50.00 USD**. [cite: 11]",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\n6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo princ",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.3571018576622009
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão d",
+          "score": 0.5036599040031433
+        },
+        {
+          "content": "question: [cite_start]\"Qual o valor da hora para clientes internacionais?\"\nanswer: Para clientes internacionais, a hora avulsa é $50.00 USD.\nreference: [cite: 11]",
+          "score": 0.5497198104858398
+        },
+        {
+          "content": "4. Estratégia de Marketing e Crescimento\nNossa estratégia foca em decisores técnicos e fundadores que valorizam velocidade sem perda de\nqualidade.\n- LinkedIn: Casos reais de automação e redução de cus",
+          "score": 0.5516102313995361
+        },
+        {
+          "content": "question: [cite_start]\"Qual o valor da hora avulsa para clientes no Brasil?\"\nanswer: Para clientes brasileiros, a hora avulsa custa R$ 120,00.\nreference: [cite: 11]",
+          "score": 0.5536987781524658
+        }
+      ],
+      "score": 6.0,
+      "analysis": {
+        "diagnosis": "A resposta está tecnicamente correta, mas não está completamente alinhada com o contexto ou a expectativa do usuário. Embora confirme a taxa correta para clientes internacionais, a resposta não demonstra confiança ou contextualização adequada, apenas repetindo a informação sem validação ou explicação.",
+        "root_cause": "A causa raiz é a confusão entre a resposta correta e a ambiguidade ou múltiplas interpretações na referência [cite:11]. O sistema RAG está confiando em uma referência específica que contém a informação correta, mas pode haver inconsistências ou ambiguidade nessa referência.",
+        "suggestion": "Melhorar a qualidade e clareza das referências no sistema RAG. Implementar mecanismos de verificação cruzada entre referências para evitar respostas baseadas em informações incompletas ou ambíguas.",
+        "priority": "Média",
+        "failure_category": "incomplete_answer"
+      }
+    },
+    {
+      "question": "Quais são os pacotes para clientes internacionais?",
+      "expected_answer": "Pacotes internacionais: 10h ($400), 20h ($700), 40h ($1.300), 80h ($2.400) e 160h ($4.000).",
+      "generated_answer": "Pacotes internacionais: 10h ($400), 20h ($700), 40h ($1.300), 80h ($2.400) e 160h ($4.000).",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\n6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo princ",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.4482003152370453
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão d",
+          "score": 0.570055365562439
+        },
+        {
+          "content": "question: [cite_start]\"Quais são os pacotes para clientes internacionais?\"\nanswer: Pacotes internacionais: 10h ($400), 20h ($700), 40h ($1.300), 80h ($2.400) e 160h ($4.000).\nreference: [cite: 11]",
+          "score": 0.6113481521606445
+        },
+        {
+          "content": "4. Estratégia de Marketing e Crescimento\nNossa estratégia foca em decisores técnicos e fundadores que valorizam velocidade sem perda de\nqualidade.\n- LinkedIn: Casos reais de automação e redução de cus",
+          "score": 0.6123527884483337
+        },
+        {
+          "content": "6. Protocolos de Atendimento\n Atendimento Bot: 24/7 para triagem.\n Atendimento Humano: Seg–Sex, 09h–18h.\n Escalonamento para casos complexos.\n Prontos para escalar seu projeto?\n Entre em contato pa",
+          "score": 0.6145577430725098
+        }
+      ],
+      "score": 10.0,
+      "analysis": {}
+    },
+    {
+      "question": "Qual o horário de atendimento humano?",
+      "expected_answer": "O atendimento humano funciona de segunda a sexta, das 09h às 18h (Horário de Brasília). O bot funciona 24/7.",
+      "generated_answer": "O atendimento humano funciona de segunda a sexta, das 09h às 18h (Horário de Brasília). [cite_start]O bot funciona 24/7.",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\n6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo princ",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.5356532335281372
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão d",
+          "score": 0.5733705163002014
+        },
+        {
+          "content": "6. Protocolos de Atendimento\n Atendimento Bot: 24/7 para triagem.\n Atendimento Humano: Seg–Sex, 09h–18h.\n Escalonamento para casos complexos.\n Prontos para escalar seu projeto?\n Entre em contato pa",
+          "score": 0.5972429513931274
+        },
+        {
+          "content": "question: Qual o horário de atendimento humano?\nanswer: O atendimento humano funciona de segunda a sexta, das 09h às 18h (Horário de Brasília). [cite_start]O bot funciona 24/7.\nreference: [cite: 11, 1",
+          "score": 0.6248207092285156
+        },
+        {
+          "content": "question: [cite_start]\"Qual o valor da hora para clientes internacionais?\"\nanswer: Para clientes internacionais, a hora avulsa é $50.00 USD.\nreference: [cite: 11]",
+          "score": 0.688048243522644
+        }
+      ],
+      "score": 9.7,
+      "analysis": {}
+    },
+    {
+      "question": "Que tipos de serviços vocês oferecem?",
+      "expected_answer": "Suporte Técnico, Vendas e Orçamentos, Dúvidas Gerais sobre Tecnologia e Segunda via de Fatura/Pagamentos.",
+      "generated_answer": "Pelo que consta na nossa base de conhecimento, oferecemos serviços relacionados a automação e IA aplicada para eliminar gargalos em operações. Nossa abordagem inclui:\n\n1. Diagnóstico de gargalos operacionais\n2. Implementação de soluções MVP focadas nos principais pontos de dor\n3. Atendimento técnico 24/7 para triagem\n4. Atendimento humano de segunda a sexta, das 09h às 18h\n5. Escalonamento para casos complexos\n\nNossa estratégia foca em eliminar gargalos com automação e IA aplicada, começando sempre com uma análise técnica e estratégica do gargalo principal.\n\nPara entender melhor como podemos ajudar, recomendo agendar uma sessão de diagnóstico para mapear automações, IA e ganhos rápidos.",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\n6. Protocolos de Atendimento\n Atendimento Bot: 24/7 para triagem.\n Atendimento Humano: Seg–Sex, 09h–18h.\n Escalonamento para casos complexos.\n Prontos para",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.4328817129135132
+        },
+        {
+          "content": "6. Protocolos de Atendimento\n Atendimento Bot: 24/7 para triagem.\n Atendimento Humano: Seg–Sex, 09h–18h.\n Escalonamento para casos complexos.\n Prontos para escalar seu projeto?\n Entre em contato pa",
+          "score": 0.5714374780654907
+        },
+        {
+          "content": "4. Estratégia de Marketing e Crescimento\nNossa estratégia foca em decisores técnicos e fundadores que valorizam velocidade sem perda de\nqualidade.\n- LinkedIn: Casos reais de automação e redução de cus",
+          "score": 0.5795625448226929
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão d",
+          "score": 0.5800442695617676
+        },
+        {
+          "content": "5. Tratamento de Objeções\nObjeção\nResposta Estratégica\n“Bubble não escala”\nEscala quando bem arquitetado. Já suportamos milhares de usuários e integrações complexas.\n“IA é só hype”\nAplicamos IA apenas",
+          "score": 0.6287252902984619
+        }
+      ],
+      "score": 0.67,
+      "analysis": {
+        "diagnosis": "A resposta não respondeu corretamente à pergunta. A pergunta pede os tipos de serviços oferecidos, mas a resposta discute estratégias de negócio, automação, IA e atendimento, sem listar os serviços.",
+        "root_cause": "retrieval_miss",
+        "suggestion": "Reprogramar o sistema ou ajustar o contexto de busca para garantir que ele retorne informações sobre os tipos de serviços oferecidos, conforme a resposta esperada.",
+        "priority": "Alta",
+        "failure_category": "retrieval_miss"
+      }
+    },
+    {
+      "question": "Qual o diferencial da empresa?",
+      "expected_answer": "Oferecemos senioridade de 15 anos de mercado, velocidade de entrega usando Bubble.io e inteligência real através de automações com IA.",
+      "generated_answer": "Resposta:\n\nO diferencial da empresa está em como utilizamos tecnologias de ponta como **n8n (orquestração & integração)**, **LangChain & LangGraph (agentes de IA)** e **FastAPI (backend de alto desempenho)** para eliminar gargalos específicos com automação e IA aplicada. Diferenciamos-nos ao focar em eliminar gargalos com automação e IA aplicada, combinando tecnologias avançadas com uma abordagem estratégica voltada para resultados práticos e mensuráveis.",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\n4. Estratégia de Marketing e Crescimento\nNossa estratégia foca em decisores técnicos e fundadores que valorizam velocidade sem perda de\nqualidade.\n- LinkedIn:",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.40009546279907227
+        },
+        {
+          "content": "4. Estratégia de Marketing e Crescimento\nNossa estratégia foca em decisores técnicos e fundadores que valorizam velocidade sem perda de\nqualidade.\n- LinkedIn: Casos reais de automação e redução de cus",
+          "score": 0.5706259608268738
+        },
+        {
+          "content": "5. Tratamento de Objeções\nObjeção\nResposta Estratégica\n“Bubble não escala”\nEscala quando bem arquitetado. Já suportamos milhares de usuários e integrações complexas.\n“IA é só hype”\nAplicamos IA apenas",
+          "score": 0.5748240947723389
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão d",
+          "score": 0.5809100270271301
+        },
+        {
+          "content": "n8n (Orquestração & Integração)\nO cérebro das operações. Conecta APIs, automatiza fluxos de trabalho e integra diferentes sistemas\nsem fricção.\nLangChain & LangGraph (Agentes de IA)\nEngenharia de agen",
+          "score": 0.6128132939338684
+        }
+      ],
+      "score": 0.95,
+      "analysis": {
+        "diagnosis": "A resposta gerada não atendeu à pergunta simples e direta sobre o diferencial da empresa. Em vez de destacar benefícios tangíveis e linguagem acessível (como na resposta esperada), ela mergulhou em detalhes técnicos irrelevantes, tornando a resposta confusa e descontextualizada para o usuário.",
+        "root_cause": "Falha de Retrieval (retrieval_miss). O contexto recuperado contém informações técnicas relevantes, mas a pergunta do usuário é simples e direta, enquanto a resposta priorizou detalhes técnicos complexos que não se alinham com a expectativa de uma resposta concisa sobre o diferencial da empresa.",
+        "suggestion": "O sistema deve priorizar a simplicidade e a relevância no retrieval. Para perguntas básicas como 'Qual o diferencial?', o contexto recuperado deve ser filtrado para extrair apenas os pontos mais relevantes e simplificados. A resposta deve ser reescrita para combinar os benefícios técnicos com linguagem mais acessível e focada no valor proposto.",
+        "priority": "Alta",
+        "failure_category": "retrieval_miss"
+      }
+    },
+    {
+      "question": "Para que serve o Bubble.io nos projetos?",
+      "expected_answer": "Usamos Bubble.io para desenvolvimento Web e Mobile (PWA), criando plataformas robustas e escaláveis em semanas, não meses.",
+      "generated_answer": "Bubble.io é usado para criar interfaces visuais e experiências de usuário, enquanto ferramentas como LangChain/n8n e FastAPI lidam com processamento pesado e lógicas customizadas. Isso permite desenvolver soluções com qualidade de enterprise mantendo a agilidade do no-code.",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\nn8n (Orquestração & Integração)\nO cérebro das operações. Conecta APIs, automatiza fluxos de trabalho e integra diferentes sistemas\nsem fricção.\nLangChain & La",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.4177144765853882
+        },
+        {
+          "content": "n8n (Orquestração & Integração)\nO cérebro das operações. Conecta APIs, automatiza fluxos de trabalho e integra diferentes sistemas\nsem fricção.\nLangChain & LangGraph (Agentes de IA)\nEngenharia de agen",
+          "score": 0.5539087057113647
+        },
+        {
+          "content": "1. Quem Somos e Nossa Visão\nSomos uma operação especializada em desenvolvimento de software e automação com Inteligência\nArtificial, liderada por um desenvolvedor com mais de 15 anos de experiência no",
+          "score": 0.5616439580917358
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão d",
+          "score": 0.5816261172294617
+        },
+        {
+          "content": "4. Estratégia de Marketing e Crescimento\nNossa estratégia foca em decisores técnicos e fundadores que valorizam velocidade sem perda de\nqualidade.\n- LinkedIn: Casos reais de automação e redução de cus",
+          "score": 0.5984238982200623
+        }
+      ],
+      "score": 1.22,
+      "analysis": {
+        "diagnosis": "A resposta não respondeu diretamente à pergunta sobre o propósito do Bubble.io. Em vez disso, ela focou em ferramentas de backend e IA, desviando completamente do tópico.",
+        "root_cause": "Falha de Recuperação (retrieval_miss). O contexto recuperado pelo RAG foi irrelevante para a pergunta sobre Bubble.io, embora o próprio contexto recuperado (item 'Quem Somos e Nossa Visão') mencione explicitamente o Bubble.io.",
+        "suggestion": "Reestruturar o pipeline de RAG para priorizar a recuperação de contextos diretamente relacionados ao termo de busca (Bubble.io). Além disso, o modelo deve ser re-entrenado ou ajustado para melhor entender a intenção da pergunta e recuperar informações relevantes.",
+        "priority": "Alta",
+        "failure_category": "retrieval_miss"
+      }
+    },
+    {
+      "question": "Qual a função do n8n nos serviços?",
+      "expected_answer": "O n8n é utilizado para orquestração de fluxos de trabalho e integração de sistemas via API.",
+      "generated_answer": "O cérebro das operações. Conecta APIs, automatiza fluxos de trabalho e integra diferentes sistemas sem fricção.",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\nn8n (Orquestração & Integração)\nO cérebro das operações. Conecta APIs, automatiza fluxos de trabalho e integra diferentes sistemas\nsem fricção.\nLangChain & La",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.39034467935562134
+        },
+        {
+          "content": "n8n (Orquestração & Integração)\nO cérebro das operações. Conecta APIs, automatiza fluxos de trabalho e integra diferentes sistemas\nsem fricção.\nLangChain & LangGraph (Agentes de IA)\nEngenharia de agen",
+          "score": 0.5201064348220825
+        },
+        {
+          "content": "4. Estratégia de Marketing e Crescimento\nNossa estratégia foca em decisores técnicos e fundadores que valorizam velocidade sem perda de\nqualidade.\n- LinkedIn: Casos reais de automação e redução de cus",
+          "score": 0.5201925039291382
+        },
+        {
+          "content": "1. Quem Somos e Nossa Visão\nSomos uma operação especializada em desenvolvimento de software e automação com Inteligência\nArtificial, liderada por um desenvolvedor com mais de 15 anos de experiência no",
+          "score": 0.5245703458786011
+        },
+        {
+          "content": "Nosso objetivo é entregar Enterprise Quality com Freelance Speed. Focamos na união de Bubble.io\npara interfaces e LangChain/n8n para inteligência real.\n2. Stack Tecnológico (Core Business)\nPara garant",
+          "score": 0.5338282585144043
+        }
+      ],
+      "score": 4.0,
+      "analysis": {
+        "diagnosis": "A resposta não foi precisa o suficiente ao descrever explicitamente a função do n8n. Embora contenha informações corretas, falta a definição clara de 'orquestração de fluxos de trabalho e integração de sistemas via API' conforme esperado.",
+        "root_cause": "Modelo não conseguiu mapear diretamente a pergunta para a definição mais concisa e esperada do n8n, mesmo tendo informações relevantes disponíveis no contexto recuperado.",
+        "suggestion": "Implementar mecanismos de prompt engineering mais específicos para perguntas diretas sobre ferramentas, incentivando respostas mais curtas e precisas. Ajustar o sistema de recuperação de informações para priorizar definições concisas quando a pergunta é direta.",
+        "priority": "Alta",
+        "failure_category": "incomplete_answer"
+      }
+    },
+    {
+      "question": "O que vocês fazem com LangChain e LangGraph?",
+      "expected_answer": "Utilizamos para a engenharia de Agentes de IA, criando lógicas autônomas e suporte inteligente com memória de contexto.",
+      "generated_answer": "LangChain & LangGraph (Agentes de IA)  \nEngenharia de agentes autônomos que possuem memória de contexto e capacidade de raciocínio.",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\n6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo princ",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.33603471517562866
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão d",
+          "score": 0.5088687539100647
+        },
+        {
+          "content": "5. Tratamento de Objeções\nObjeção\nResposta Estratégica\n“Bubble não escala”\nEscala quando bem arquitetado. Já suportamos milhares de usuários e integrações complexas.\n“IA é só hype”\nAplicamos IA apenas",
+          "score": 0.5295030474662781
+        },
+        {
+          "content": "n8n (Orquestração & Integração)\nO cérebro das operações. Conecta APIs, automatiza fluxos de trabalho e integra diferentes sistemas\nsem fricção.\nLangChain & LangGraph (Agentes de IA)\nEngenharia de agen",
+          "score": 0.5369144678115845
+        },
+        {
+          "content": "4. Estratégia de Marketing e Crescimento\nNossa estratégia foca em decisores técnicos e fundadores que valorizam velocidade sem perda de\nqualidade.\n- LinkedIn: Casos reais de automação e redução de cus",
+          "score": 0.5747501254081726
+        }
+      ],
+      "score": 3.12,
+      "analysis": {
+        "diagnosis": "A resposta, embora tecnicamente correta, não está completamente alinhada com a pergunta do usuário. A pergunta busca entender o *uso* das tecnologias (o que se faz com LangChain e LangGraph), enquanto a resposta se concentra mais na descrição das tecnologias em si, sem explicitamente abordar as aplicações ou benefícios práticos.",
+        "root_cause": "A causa raiz é a interpretação insatisfatória do contexto recuperado. O contexto menciona explicitamente como essas tecnologias são usadas (orquestração, backend, agentes autônomos), mas a resposta, embora incluindo essas informações, não as apresenta de forma destacada ou aplicada diretamente ao que o usuário está perguntando (o 'o que se faz').",
+        "suggestion": "Melhorar a integração entre o modelo e o contexto recuperado. O prompt ou o pipeline de RAG deve ser ajustado para que o modelo seja mais direcionado a extrair e estruturar as informações sobre *como* essas tecnologias são aplicadas na prática, conforme indicado no contexto recuperado (ex: agentes autônomos, memória de contexto, raciocínio, backend pesado).",
+        "priority": "Média",
+        "failure_category": "incomplete_answer"
+      }
+    },
+    {
+      "question": "Quando o FastAPI é utilizado?",
+      "expected_answer": "Usamos FastAPI para backends que exigem processamento pesado ou lógica personalizada em Python que o No-code não suporta.",
+      "generated_answer": "FastAPI é um backend em Python para processamento pesado e lógicas customizadas que excedem as capacidades do No-Code.",
+      "context": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosicionamento: Nosso foco é eliminar gargalos com automação e IA aplicada.\nFechamento: Faz sentido avaliarmos um MVP focado no seu maior gargalo?\n\nn8n (Orquestração & Integração)\nO cérebro das operações. Conecta APIs, automatiza fluxos de trabalho e integra diferentes sistemas\nsem fricção.\nLangChain & La",
+      "sources": [
+        {
+          "content": "4. Sales Pitch (Script Base)\nAbertura: Você hoje sente que sua operação cresce mais rápido do que seus sistemas?\nDiagnóstico: Onde hoje seu time perde mais tempo: operação, dados ou integração?\nPosici",
+          "score": 0.5596890449523926
+        },
+        {
+          "content": "n8n (Orquestração & Integração)\nO cérebro das operações. Conecta APIs, automatiza fluxos de trabalho e integra diferentes sistemas\nsem fricção.\nLangChain & LangGraph (Agentes de IA)\nEngenharia de agen",
+          "score": 0.6163982152938843
+        },
+        {
+          "content": "1. Quem Somos e Nossa Visão\nSomos uma operação especializada em desenvolvimento de software e automação com Inteligência\nArtificial, liderada por um desenvolvedor com mais de 15 anos de experiência no",
+          "score": 0.6753002405166626
+        },
+        {
+          "content": "6. Próximos Passos (Closing)\nO próximo passo não é vender código, mas validar impacto. Iniciamos sempre com uma análise\ntécnica e estratégica do gargalo principal.\nCall to Action:\nAgendar uma sessão d",
+          "score": 0.7022811770439148
+        },
+        {
+          "content": "5. Tratamento de Objeções\nObjeção\nResposta Estratégica\n“Bubble não escala”\nEscala quando bem arquitetado. Já suportamos milhares de usuários e integrações complexas.\n“IA é só hype”\nAplicamos IA apenas",
+          "score": 0.706425666809082
+        }
+      ],
+      "score": 4.0,
+      "analysis": {
+        "diagnosis": "A resposta está incompleta em relação à resposta esperada. A resposta esperada menciona explicitamente 'No-code', que não está presente na resposta gerada.",
+        "root_cause": "Retrieval Miss/Incomplete Context Utilization. O contexto recuperado menciona explicitamente 'No-code' em relação ao FastAPI, mas a resposta não incorporou essa informação.",
+        "suggestion": "Reprogramar o sistema RAG para garantir que todas as partes relevantes do contexto recuperado sejam incorporadas na resposta final, especialmente quando o contexto contém informações contrastantes ou complementares.",
+        "priority": "Média",
+        "failure_category": "incomplete_answer"
+      }
+    }
+  ]
+}

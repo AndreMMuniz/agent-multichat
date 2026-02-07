@@ -177,7 +177,7 @@ def cleanup(base_dir: str = ".", dry_run: bool = False, force: bool = False):
     if not force:
         print("\n⚠️  WARNING: This will permanently delete the files listed above!")
         response = input("Continue? (yes/no): ")
-        if response.lower() != 'yes':
+        if response.lower() not in ['yes', 'y']:
             print("\n❌ Cleanup cancelled")
             return
     

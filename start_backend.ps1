@@ -1,3 +1,4 @@
+
 # Backend Quick Start Script
 # Run: .\start_backend.ps1
 
@@ -23,7 +24,10 @@ Write-Host ""
 
 # Step 2: Test database connection
 Write-Host "Testing database connection..." -ForegroundColor Yellow
-py test_new_tables.py
+
+# Ensure imports from root work
+$env:PYTHONPATH = "$PWD;$env:PYTHONPATH"
+python tests\test_new_tables.py
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "Database connected and tables created" -ForegroundColor Green
@@ -35,6 +39,7 @@ else {
 
 Write-Host ""
 
+
 # Step 3: Start FastAPI server
 Write-Host "Starting FastAPI server..." -ForegroundColor Yellow
 Write-Host "Backend available at: http://127.0.0.1:8000" -ForegroundColor Cyan
@@ -43,4 +48,4 @@ Write-Host ""
 Write-Host "Press Ctrl+C to stop the server" -ForegroundColor Gray
 Write-Host ""
 
-py main.py
+python main.py
